@@ -12,7 +12,7 @@ var corsOptions = {
 
 const bodyParser = require("body-parser");
 
-
+//connection to DB
 db.mongoose
   .connect("mongodb+srv://cruzroyregal:Today.123@cluster0.giykk58.mongodb.net/?retryWrites=true&w=majority", {
     useNewUrlParser: true,
@@ -29,7 +29,7 @@ db.mongoose
 
 
 
-
+//initial creation of roles 
   function initial() {
     Role.estimatedDocumentCount()
       .then(count => {
@@ -74,7 +74,10 @@ app.use(express.json());
 app.get('/',(req,res)=>{
     res.json({message: "Welcome to test application"})
 })
+
+
 require('./app/routes/auth.routes')(app);
+require('./app/routes/test.route')(app);
 require('./app/routes/user.routes')(app);
 const PORT = process.env.PORT || 8080
 
