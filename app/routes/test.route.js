@@ -19,7 +19,11 @@ module.exports = function(app){
 
     app.post("/api/test/dog", [authJwt.verifyToken], controller.createDog)
 
-    // app.get("/api/testroute",(req,res)=>{
-    //     res.send("DOG TEST")
-    // })
+    app.get("/api/test/dog/:id", [authJwt.verifyToken], controller.getDog)
+
+    app.delete("/api/test/dog/:id", [authJwt.verifyToken], controller.deleteDog)
+
+    app.put("/api/test/dog/:id", [authJwt.verifyToken], controller.updateDog)
+
+    
 }
