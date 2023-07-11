@@ -32,4 +32,14 @@ module.exports = function(app) {
     [authJwt.verifyToken, authJwt.isAdmin],
     controller.adminBoard
   );
+
+  app.post("/api/test/postdate", [authJwt.verifyToken], controller.postDate)
+
+  app.get("/api/test/getdate", [authJwt.verifyToken], controller.getDate)
+
+  app.get("/api/test/getdate/:id", [authJwt.verifyToken], controller.getADate)
+  app.put("/api/test/getdate/:id", [authJwt.verifyToken], controller.updateDate)
+  app.delete("/api/test/getdate/:id", [authJwt.verifyToken], controller.deleteDate)
+  app.delete("/api/test/getdate", [authJwt.verifyToken], controller.deleteAllDate)
+
 };
