@@ -41,5 +41,6 @@ module.exports = function(app) {
   app.put("/api/test/getdate/:id", [authJwt.verifyToken], controller.updateDate)
   app.delete("/api/test/getdate/:id", [authJwt.verifyToken], controller.deleteDate)
   app.delete("/api/test/getdate", [authJwt.verifyToken], controller.deleteAllDate)
+  // app.put("/api/test/register/:id", [authJwt.verifyToken], controller.registerDate)
 
 };
