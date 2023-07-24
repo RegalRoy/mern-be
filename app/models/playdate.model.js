@@ -16,6 +16,9 @@ const PlayDateSchema = new mongoose.Schema({
   },
   ownerId:{
     type:String
+  },
+  comments:{
+    type:Array
   }
 });
 
