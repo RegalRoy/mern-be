@@ -19,6 +19,9 @@ const PlayDateSchema = new mongoose.Schema({
   },
   comments:{
     type:Array
+  },
+  rating:{
+    type:Array
   }
 });
 
