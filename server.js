@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const multer = require('multer');
 const db = require('./app/models')
 const Role = db.role;
 const dbConfig = require('./app/config/db.config.js');
@@ -11,6 +12,27 @@ var corsOptions = {
 };
 
 const bodyParser = require("body-parser");
+
+// Set up storage using multer
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/'); // Save files to the 'uploads' folder
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + '-' + file.originalname); // Set unique file names
+  }
+});
+
+// Set up multer with the storage configuration
+const upload = multer({ storage: storage });
+
+// Use the middleware for a specific route
+app.post('/api/test/dog', upload.single('dogPicture'), (req, res) => {
+  // The uploaded file is available at req.file
+  // Other form data (if any) can be accessed with req.body
+
+  // Your code to handle the file upload and save the dog details to the database
+});
 
 //connection to DB
 db.mongoose
@@ -81,4 +103,4 @@ require('./app/routes/test.route')(app);
 require('./app/routes/user.routes')(app);
 const PORT = process.env.PORT || 8080
 
-app.listen(PORT, ()=>{console.log("Server is Running on port ...")})
+app.listen(PORT, ()=>{console.log("Server is Running on port 8080")})
