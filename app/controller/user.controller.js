@@ -10,7 +10,6 @@ exports.allAccess = (req, res) => {
     //get dogs here
     Dog.find().then(dogs=>res.json(dogs))
     .catch(err=>res.status(404).json({nobooksfound:"NO DOGS FOUND"}));
-
   };
   
   exports.adminBoard = (req, res) => {
