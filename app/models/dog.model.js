@@ -21,6 +21,9 @@ const DogSchema = new mongoose.Schema({
   },
   ownerId:{
     type:String
+  },
+  photo: {
+    type: String
   }
 });
 
