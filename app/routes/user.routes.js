@@ -1,5 +1,7 @@
 const { authJwt } = require("../middleware");
 const controller = require("../controller/user.controller");
+const path = require("path");
+const express = require("express");
 
 
 const bodyParser = require('body-parser');
@@ -16,6 +18,9 @@ module.exports = function(app) {
     );
     next();
   });
+  
+  const uploadsFolderPath = path.resolve(__dirname, "../../uploads");
+  app.use("/uploads", express.static(uploadsFolderPath));
 
   app.get("/api/test/all", controller.allAccess);
 

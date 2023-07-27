@@ -1,6 +1,18 @@
 const { authJwt } = require("../middleware");
 const controller = require("../controller/dog.controller");
 const bodyParser = require('body-parser');
+const multer = require('multer');
+
+const storage = multer.diskStorage({
+  destination: function(req, file, cb){
+        cb(null,'./uploads/')
+  },
+  filename: function(req, file, cb){
+        cb(null, file.originalname)
+  }
+})
+const upload = multer({storage:storage})
+
 
 
 module.exports = function(app){
@@ -17,7 +29,7 @@ module.exports = function(app){
       
     app.get("/api/test/dog", [authJwt.verifyToken], controller.dogBoard)
 
-    app.post("/api/test/dog", [authJwt.verifyToken], controller.createDog)
+    app.post("/api/test/dog", upload.single('photo'),[authJwt.verifyToken], controller.createDog)
 
     app.get("/api/test/dog/:id", [authJwt.verifyToken], controller.getDog)
 
@@ -27,3 +39,4 @@ module.exports = function(app){
 
     
 }
+//
