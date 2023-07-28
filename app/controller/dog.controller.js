@@ -43,7 +43,11 @@ exports.deleteDog = (req, res) => {
 }
 
 exports.updateDog = (req, res) => {
-      Dog.findByIdAndUpdate(req.params.id, req.body)
+      const dogData = {
+            ...req.body,
+            photo: req.file.path
+      };
+      Dog.findByIdAndUpdate(req.params.id, dogData)
             .then(dog => res.json({ msg: "Update Ok!" }))
             .catch(err => res.status(404).json({ error: "Unable to update the book" }))
 }
