@@ -35,7 +35,7 @@ module.exports = function(app){
 
     app.delete("/api/test/dog/:id", [authJwt.verifyToken], controller.deleteDog)
 
-    app.put("/api/test/dog/:id", [authJwt.verifyToken], controller.updateDog)
+    app.put("/api/test/dog/:id",upload.single('photo'), [authJwt.verifyToken], controller.updateDog)
 
     
 }
