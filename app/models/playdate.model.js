@@ -22,6 +22,9 @@ const PlayDateSchema = new mongoose.Schema({
   },
   rating:{
     type:Array
+  },
+  photo: {
+    type: String
   }
 });
 
