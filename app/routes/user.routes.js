@@ -29,7 +29,9 @@ module.exports = function (app) {
   });
 
   const uploadsFolderPath = path.resolve(__dirname, "../../uploads");
+  const uploadsFolderPath2 = path.resolve(__dirname, "../../uploads_dates");
   app.use("/uploads", express.static(uploadsFolderPath));
+  app.use("/date_uploads",express.static(uploadsFolderPath2))
 
   app.get("/api/test/all", controller.allAccess);
 
